@@ -111,14 +111,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // 문의관리 페이지 초기화
         console.log('문의관리 페이지 초기화');
         
-        // 날짜 피커 초기화 (자동등록과 동일)
+        // 날짜 피커 초기화 (이미지 형식에 맞게)
         const dateRangePicker = contentRoot.querySelector('[data-id="date-range-picker"]');
         if (dateRangePicker && window.flatpickr) {
             flatpickr(dateRangePicker, {
                 mode: "range",
-                dateFormat: "Y-m-d",
+                dateFormat: "Ymd",
                 locale: "ko",
-                placeholder: "날짜를 선택하세요"
+                placeholder: "날짜를 선택하세요",
+                onChange: function(selectedDates, dateStr, instance) {
+                    if (selectedDates.length === 2) {
+                        const startDate = selectedDates[0];
+                        const endDate = selectedDates[1];
+                        const formattedStart = startDate.getFullYear().toString() + 
+                                             (startDate.getMonth() + 1).toString().padStart(2, '0') + 
+                                             startDate.getDate().toString().padStart(2, '0');
+                        const formattedEnd = endDate.getFullYear().toString() + 
+                                           (endDate.getMonth() + 1).toString().padStart(2, '0') + 
+                                           endDate.getDate().toString().padStart(2, '0');
+                        dateRangePicker.value = formattedStart + " ~ " + formattedEnd;
+                    }
+                }
             });
         }
     }
