@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalInitializers = {
         'api-integration-modal': initializeApiIntegrationModal,
         'api-registration-modal': initializeApiRegistrationModal,
+        'wms-selection-modal': initializeWmsSelectionModal,
         'auto-registration-settings-modal': initializeAutoRegistrationSettingsModal
     };
 
@@ -367,6 +368,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initializeApiRegistrationModal(modalElement) {
         // console.log('API 등록 모달 초기화');
+    }
+    
+    function initializeWmsSelectionModal(modalElement) {
+        // console.log('WMS 선택 모달 초기화');
     }
 
     function initializeBulkRegistrationPage(contentRoot) {
