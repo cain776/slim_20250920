@@ -1,0 +1,20 @@
+{
+  "name": "wms-system",
+  "version": "1.0.0",
+  "description": "WMS System - eXpert slim",
+  "main": "index.js",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "build:css": "npx tailwindcss -i ./css/input.css -o ./css/output.css --watch",
+    "build:css:prod": "npx tailwindcss -i ./css/input.css -o ./css/output.css --minify",
+    "build": "npm run build:css:prod"
+  },
+  "keywords": ["wms", "warehouse", "management", "system"],
+  "author": "cain776",
+  "license": "PRIVATE",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32"
+  }
+}

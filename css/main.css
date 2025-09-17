@@ -4,11 +4,52 @@
     --header-height: 64px;
 }
 body {
-    font-family: 'Pretendard Variable JP', 'Pretendard', sans-serif;
-    color: #334155; /* slate-700 */
+    font-family: 'Pretendard Variable JP', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #334155;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
-/* --- Layout --- */
+/* 저해상도 화면 최적화 */
+@media screen and (max-resolution: 120dpi), 
+       screen and (-webkit-max-device-pixel-ratio: 1.5) {
+    body {
+        -webkit-font-smoothing: subpixel-antialiased;
+        font-weight: 450;
+        letter-spacing: 0;
+    }
+    
+    /* 작은 텍스트 선명도 개선 */
+    .text-xs, .text-sm {
+        font-weight: 500;
+        transform: translateZ(0);
+        will-change: transform;
+    }
+    
+    /* 버튼 텍스트 선명도 */
+    .btn {
+        font-weight: 500;
+        transform: translateZ(0);
+    }
+    
+    /* 셀렉트박스 및 라벨 선명도 */
+    .floating-label, 
+    .floating-label-select {
+        font-weight: 450;
+    }
+}
+
+/* Windows 시스템 폰트 최적화 */
+@supports (-ms-ime-align: auto) {
+    body {
+        font-family: 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
+    }
+}
+
 .sidebar {
     width: var(--sidebar-width);
     transition: width 0.3s ease;
@@ -26,7 +67,6 @@ body {
     height: calc(100vh - var(--header-height));
 }
 
-/* --- Sidebar Collapsed State --- */
 .sidebar-collapsed .sidebar {
     width: var(--sidebar-width-collapsed);
 }
@@ -39,9 +79,10 @@ body {
     display: none;
 }
 
-/* LNB 대메뉴 폰트 사이즈 조정 */
 .sidebar-item-text {
     font-size: 14px;
+    font-weight: 450;
+    letter-spacing: -0.01em;
 }
 .sidebar-collapsed .sidebar .full-logo { display: none; }
 .sidebar-collapsed .sidebar .collapsed-logo { display: inline; font-weight: 900; }
@@ -55,7 +96,6 @@ body {
 .sidebar-collapsed .sidebar [data-action] i[data-lucide] { margin-right: 0; }
 .sidebar-collapsed .sidebar ul[data-state="expanded"] { display: none !important; }
 
-/* --- Sidebar Menu Styles --- */
 [data-action="navigate"].active,
 [data-action="toggle-submenu"].active {
     background-color: #f5f3ff;
@@ -66,7 +106,6 @@ body {
 [data-action="toggle-submenu"].active svg { color: #36005E; }
 a[data-content].active { color: #36005E; font-weight: 600; }
 
-/* Submenu state controlled by CSS */
 ul[data-state="collapsed"] { display: none; }
 ul[data-state="expanded"] { display: block; }
 [data-action="toggle-submenu"][aria-expanded="true"] .submenu-toggle-icon {
@@ -74,7 +113,6 @@ ul[data-state="expanded"] { display: block; }
 }
 
 
-/* --- Floating Label for Select Box --- */
 .floating-label-group { position: relative; }
 .floating-label-select {
     border: 1px solid #cbd5e1;
@@ -83,7 +121,7 @@ ul[data-state="expanded"] { display: block; }
     width: 100%;
     height: 42px;
     background-color: white;
-    font-size: 14px; /* 추가: 셀렉트 텍스트 14px */
+    font-size: 14px;
     z-index: 5;
     position: relative;
     appearance: none;
@@ -91,7 +129,7 @@ ul[data-state="expanded"] { display: block; }
     -moz-appearance: none;
 }
 .floating-label-select:disabled {
-    background-color: #f8fafc; /* slate-50 */
+    background-color: #f8fafc;
     cursor: not-allowed;
 }
 .floating-label-select:focus {
@@ -105,7 +143,7 @@ ul[data-state="expanded"] { display: block; }
     left: 0.75rem;
     transform: translateY(-50%);
     color: #64748b;
-    font-size: 14px; /* 추가: 평상시 14px */
+    font-size: 14px;
     transition: all 0.2s ease-out;
     pointer-events: none;
     z-index: 10;
@@ -113,7 +151,7 @@ ul[data-state="expanded"] { display: block; }
     padding: 0 0.25rem;
 }
 .floating-label-select:disabled + .floating-label {
-     background-color: #f8fafc; /* slate-50 */
+     background-color: #f8fafc;
 }
 .floating-label-select:focus + .floating-label,
 .floating-label-group.has-value .floating-label {
@@ -155,7 +193,6 @@ ul[data-state="expanded"] { display: block; }
     pointer-events: auto;
 }
 
-/* Date Range Picker Styles */
 .date-range-picker-group {
     position: relative;
     display: flex;
@@ -176,7 +213,7 @@ ul[data-state="expanded"] { display: block; }
     justify-content: center;
     height: 100%;
     width: 40px;
-    background-color: #f8fafc; /* slate-50 */
+    background-color: #f8fafc;
     border-right: 1px solid #cbd5e1;
     color: #64748b;
     border-top-left-radius: 0.375rem;
@@ -212,7 +249,6 @@ ul[data-state="expanded"] { display: block; }
     pointer-events: auto;
 }
 
-/* Custom File Input */
 .custom-file-input {
     border: 1px solid #cbd5e1;
     border-radius: 0.375rem;
@@ -236,7 +272,6 @@ ul[data-state="expanded"] { display: block; }
     cursor: pointer;
 }
 
-/* Button Styles */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -244,7 +279,7 @@ ul[data-state="expanded"] { display: block; }
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     font-weight: 500;
-    font-size: 14px; /* 추가: 기본 버튼 14px */
+    font-size: 14px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     border: 1px solid transparent;
@@ -260,11 +295,11 @@ ul[data-state="expanded"] { display: block; }
 }
 .btn-secondary {
     background-color: white;
-    color: #475569; /* slate-600 */
-    border-color: #cbd5e1; /* slate-300 */
+    color: #475569;
+    border-color: #cbd5e1;
 }
 .btn-secondary:hover {
-    background-color: #f8fafc; /* slate-50 */
+    background-color: #f8fafc;
 }
 
 .btn-outline-primary {
@@ -276,7 +311,7 @@ ul[data-state="expanded"] { display: block; }
     color: white;
 }
 .btn-outline-green {
-    color: #16a34a; /* green-600 */
+    color: #16a34a;
     border-color: #16a34a;
 }
 .btn-outline-green:hover {
@@ -284,7 +319,7 @@ ul[data-state="expanded"] { display: block; }
     color: white;
 }
 .btn-outline-red {
-    color: #dc2626; /* red-600 */
+    color: #dc2626;
     border-color: #dc2626;
 }
 .btn-outline-red:hover {
@@ -292,19 +327,16 @@ ul[data-state="expanded"] { display: block; }
     color: white;
 }
 
-/* --- Content Card Style --- */
 .content-card {
     background-color: white;
-    border: 1px solid #e2e8f0; /* slate-200 */
-    border-radius: 0.5rem; /* lg */
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* sm */
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 
-/* --- Modal Styles --- */
 #api-registration-modal { transition: opacity 0.3s ease-in-out; }
 
-/* --- Misc --- */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
@@ -315,16 +347,23 @@ ul[data-state="expanded"] { display: block; }
     box-shadow: inset 0 0 0 2px #36005E;
 }
 
-/* 자동등록 설정 모달 스타일 */
 .tab-button {
-    transition: all 0.2s ease-in-out;
     border-bottom: 2px solid transparent;
     position: relative;
 }
 
-.tab-button.active {
+/* 모달용 탭 버튼 (배경색 있는 버전) */
+.modal-container .tab-button.active,
+[role="dialog"] .tab-button.active {
     background-color: #36005E;
     color: white;
+    border-bottom-color: #36005E;
+}
+
+/* 페이지용 탭 버튼 (텍스트 색상만) */
+.content-card .tab-button.active {
+    background-color: transparent;
+    color: #36005E;
     border-bottom-color: #36005E;
 }
 
@@ -334,10 +373,37 @@ ul[data-state="expanded"] { display: block; }
     border-bottom-color: transparent;
 }
 
+/* 비활성 탭 호버 - 모든 경우 동일 */
 .tab-button:not(.active):hover {
-    background-color: #F3F4F6;
+    background-color: transparent;
     color: #36005E;
     border-bottom-color: transparent;
+}
+
+/* 활성 탭 호버 시 색상 유지 */
+.content-card .tab-button.active:hover {
+    color: #36005E !important;
+    background-color: transparent !important;
+}
+
+.modal-container .tab-button.active:hover,
+[role="dialog"] .tab-button.active:hover {
+    color: white !important;
+    background-color: #36005E !important;
+}
+
+/* 탭 콘텐츠 즉시 전환 (애니메이션 제거) */
+.tab-content {
+    transition: none !important;
+    animation: none !important;
+}
+
+.tab-content.hidden {
+    display: none !important;
+}
+
+.tab-button {
+    transition: none !important;
 }
 
 .tab-content {
@@ -368,7 +434,6 @@ ul[data-state="expanded"] { display: block; }
     font-size: 0.875rem;
 }
 
-/* 툴바 높이 강제 조정 */
 .toolbar-container {
     min-height: 74px !important;
     height: 74px !important;
@@ -389,16 +454,16 @@ ul[data-state="expanded"] { display: block; }
     max-height: 51px !important;
 }
 
-/* 툴바 버튼 커스텀 스타일 */
 .toolbar-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2px 4px;
+    padding: 4px;
     border-radius: 0.375rem;
-    width: 64px;
+    width: 51px !important;
     height: 51px !important;
+    min-width: 51px !important;
     min-height: 51px !important;
     max-height: 51px !important;
     background-color: transparent;
@@ -409,15 +474,60 @@ ul[data-state="expanded"] { display: block; }
 }
 
 .toolbar-btn:hover {
-    background-color: #f1f5f9 !important; /* slate-100 */
+    background-color: #f1f5f9 !important;
 }
 
-/* 툴바 칸막이 선 스타일링 */
+.floating-label-group.opacity-50 {
+    opacity: 0.5;
+}
+
+.floating-label-group.opacity-50 .floating-label-select {
+    background-color: #f8fafc;
+    cursor: not-allowed;
+}
+
+.modal-container [role="dialog"],
+.modal-container .modal {
+}
+
+.fullscreen-mode .header {
+    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0.95));
+}
+
+.fullscreen-mode .sidebar {
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+#fullscreen-toggle {
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+#fullscreen-toggle:hover {
+    transform: scale(1.1);
+}
+
+.fullscreen-mode::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #36005E, #6B46C1, #36005E);
+    z-index: 9999;
+    animation: fullscreenIndicator 2s ease-in-out infinite;
+}
+
+@keyframes fullscreenIndicator {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
 .toolbar-container div.border-r {
     position: relative !important;
 }
 
-/* 기존 border 숨기기 */
 .toolbar-container div.border-r::before {
     content: '' !important;
     position: absolute !important;
@@ -430,12 +540,10 @@ ul[data-state="expanded"] { display: block; }
     z-index: 10 !important;
 }
 
-/* 기존 border 제거 */
 .toolbar-container div.border-r {
     border-right-color: transparent !important;
 }
 
-/* 툴바 내부 정렬 */
 .toolbar-container > div {
     display: flex !important;
     align-items: center !important;

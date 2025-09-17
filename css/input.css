@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS imports */
+@import './main.css';
+
+/* Custom Tailwind Components */
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark;
+  }
+  
+  .btn-secondary {
+    @apply bg-slate-200 text-slate-700 hover:bg-slate-300;
+  }
+  
+  .content-card {
+    @apply bg-white rounded-lg shadow-sm border border-slate-200;
+  }
+  
+  .toolbar-btn {
+    @apply flex flex-col items-center justify-center p-1 rounded-md hover:bg-slate-100 transition-colors;
+  }
+}
