@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ORDER_HOLD_MANAGEMENT: 'order-hold-management',
             NOTICE_BOARD: 'notice-board',
             INQUIRY_MANAGEMENT: 'inquiry-management',
+            OVERSEAS_DELIVERY_RECEIPT: 'overseas-delivery-receipt',
+            SETTLEMENT_MANAGEMENT: 'settlement-management',
             API_INTEGRATION: 'api-integration',
             AUTO_REGISTRATION: 'auto-registration',
             BULK_REGISTRATION: 'bulk-registration',
@@ -88,6 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
         [CONSTANTS.PAGE_IDS.API_INTEGRATION]: initializeApiIntegrationPage,
         [CONSTANTS.PAGE_IDS.NOTICE_BOARD]: initializeNoticeBoardPage,
         [CONSTANTS.PAGE_IDS.INQUIRY_MANAGEMENT]: initializeInquiryManagementPage,
+        [CONSTANTS.PAGE_IDS.OVERSEAS_DELIVERY_RECEIPT]: initializeOverseasDeliveryReceiptPage,
+        [CONSTANTS.PAGE_IDS.SETTLEMENT_MANAGEMENT]: initializeSettlementManagementPage,
         [CONSTANTS.PAGE_IDS.AUTO_REGISTRATION]: initializeAutoRegistrationPage,
         [CONSTANTS.PAGE_IDS.AUTO_REGISTRATION_SETTINGS_NEW]: initializeAutoRegistrationSettingsNewPage,
         [CONSTANTS.PAGE_IDS.BULK_REGISTRATION]: initializeBulkRegistrationPage
@@ -110,6 +114,64 @@ document.addEventListener('DOMContentLoaded', () => {
     function initializeInquiryManagementPage(contentRoot) {
         // 문의관리 페이지 초기화
         console.log('문의관리 페이지 초기화');
+        
+        // 날짜 피커 초기화 (이미지 형식에 맞게)
+        const dateRangePicker = contentRoot.querySelector('[data-id="date-range-picker"]');
+        if (dateRangePicker && window.flatpickr) {
+            flatpickr(dateRangePicker, {
+                mode: "range",
+                dateFormat: "Ymd",
+                locale: "ko",
+                placeholder: "날짜를 선택하세요",
+                onChange: function(selectedDates, dateStr, instance) {
+                    if (selectedDates.length === 2) {
+                        const startDate = selectedDates[0];
+                        const endDate = selectedDates[1];
+                        const formattedStart = startDate.getFullYear().toString() + 
+                                             (startDate.getMonth() + 1).toString().padStart(2, '0') + 
+                                             startDate.getDate().toString().padStart(2, '0');
+                        const formattedEnd = endDate.getFullYear().toString() + 
+                                           (endDate.getMonth() + 1).toString().padStart(2, '0') + 
+                                           endDate.getDate().toString().padStart(2, '0');
+                        dateRangePicker.value = formattedStart + " ~ " + formattedEnd;
+                    }
+                }
+            });
+        }
+    }
+    
+    function initializeOverseasDeliveryReceiptPage(contentRoot) {
+        // 해외배송소포수령증 페이지 초기화
+        console.log('해외배송소포수령증 페이지 초기화');
+        
+        // 날짜 피커 초기화 (이미지 형식에 맞게)
+        const dateRangePicker = contentRoot.querySelector('[data-id="date-range-picker"]');
+        if (dateRangePicker && window.flatpickr) {
+            flatpickr(dateRangePicker, {
+                mode: "range",
+                dateFormat: "Ymd",
+                locale: "ko",
+                placeholder: "날짜를 선택하세요",
+                onChange: function(selectedDates, dateStr, instance) {
+                    if (selectedDates.length === 2) {
+                        const startDate = selectedDates[0];
+                        const endDate = selectedDates[1];
+                        const formattedStart = startDate.getFullYear().toString() + 
+                                             (startDate.getMonth() + 1).toString().padStart(2, '0') + 
+                                             startDate.getDate().toString().padStart(2, '0');
+                        const formattedEnd = endDate.getFullYear().toString() + 
+                                           (endDate.getMonth() + 1).toString().padStart(2, '0') + 
+                                           endDate.getDate().toString().padStart(2, '0');
+                        dateRangePicker.value = formattedStart + " ~ " + formattedEnd;
+                    }
+                }
+            });
+        }
+    }
+    
+    function initializeSettlementManagementPage(contentRoot) {
+        // 정산관리 페이지 초기화
+        console.log('정산관리 페이지 초기화');
         
         // 날짜 피커 초기화 (이미지 형식에 맞게)
         const dateRangePicker = contentRoot.querySelector('[data-id="date-range-picker"]');
@@ -693,6 +755,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'order-hold-management': '삭제/보류/보관 관리',
             'notice-board': '공지사항',
             'inquiry-management': '문의관리',
+            'overseas-delivery-receipt': '해외배송소포수령증',
+            'settlement-management': '정산관리',
             'api-integration': 'API 연동관리',
             'auto-registration': '자동등록(API)',
             'bulk-registration': '대량등록(엑셀)',
@@ -1078,6 +1142,42 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 문의관리 페이지의 모든 체크박스 해제
                     const inquiryCheckboxes = document.querySelectorAll('.content-area input[type="checkbox"]');
                     inquiryCheckboxes.forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+                    break;
+                    
+                case 'reset-receipt-filters':
+                    // 해외배송소포수령증 페이지의 모든 셀렉트박스 초기화
+                    const receiptSelects = document.querySelectorAll('.content-area .floating-label-select');
+                    receiptSelects.forEach(select => {
+                        select.value = '';
+                        const floatingLabelGroup = select.closest('.floating-label-group');
+                        if (floatingLabelGroup) {
+                            floatingLabelGroup.classList.remove('has-value');
+                        }
+                    });
+                    
+                    // 해외배송소포수령증 페이지의 모든 체크박스 해제
+                    const receiptCheckboxes = document.querySelectorAll('.content-area input[type="checkbox"]');
+                    receiptCheckboxes.forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+                    break;
+                    
+                case 'reset-settlement-filters':
+                    // 정산관리 페이지의 모든 셀렉트박스 초기화
+                    const settlementSelects = document.querySelectorAll('.content-area .floating-label-select');
+                    settlementSelects.forEach(select => {
+                        select.value = '';
+                        const floatingLabelGroup = select.closest('.floating-label-group');
+                        if (floatingLabelGroup) {
+                            floatingLabelGroup.classList.remove('has-value');
+                        }
+                    });
+                    
+                    // 정산관리 페이지의 모든 체크박스 해제
+                    const settlementCheckboxes = document.querySelectorAll('.content-area input[type="checkbox"]');
+                    settlementCheckboxes.forEach(checkbox => {
                         checkbox.checked = false;
                     });
                     break;
