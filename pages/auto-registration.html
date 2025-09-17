@@ -1,0 +1,65 @@
+<div class="content-card p-4 mb-6 flex justify-between items-center text-sm">
+    <div class="flex items-center space-x-4">
+        <!-- Shopping Mall -->
+        <div class="floating-label-group w-36">
+            <select required class="floating-label-select" data-id="mall-select">
+                <option value="" disabled selected></option>
+                <option value="qoo10jp">🇯🇵 Qoo10 JP</option>
+                <option value="rakuten">Rakuten</option>
+                <option value="nhn">NHN</option>
+                <option value="playauto">PlayAuto</option>
+            </select>
+            <label class="floating-label">쇼핑몰</label>
+            <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="쇼핑몰 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+        </div>
+        <!-- API ID -->
+        <div class="floating-label-group w-36">
+            <select required class="floating-label-select">
+                <option value="" disabled selected></option>
+                <option value="api001">API001</option>
+                <option value="api002">API002</option>
+                <option value="api003">API003</option>
+                <option value="api004">API004</option>
+            </select>
+            <label class="floating-label">API ID</label>
+            <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="API ID 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+        </div>
+        <!-- Order Status -->
+        <div class="floating-label-group w-36">
+            <select required class="floating-label-select" data-id="order-status-select" disabled>
+                <option value="" disabled selected></option>
+            </select>
+            <label class="floating-label">주문상태</label>
+            <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="주문상태 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+        </div>
+        <!-- Date Type -->
+        <div class="floating-label-group w-36">
+            <select required class="floating-label-select" data-id="date-type-select" disabled>
+                <option value="" disabled selected></option>
+            </select>
+            <label class="floating-label">날짜유형</label>
+            <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="날짜유형 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+        </div>
+        <!-- Date Range Picker -->
+        <div class="date-range-picker-group">
+            <div class="calendar-icon">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+            </div>
+            <input type="text" data-id="date-range-picker" placeholder="날짜를 선택하세요">
+            <button type="button" class="date-range-clear-btn" data-action="clear-datepicker" aria-label="날짜 선택 초기화">
+                <i data-lucide="x" class="w-4 h-4 pointer-events-none"></i>
+            </button>
+        </div>
+    </div>
+    <div class="flex items-center space-x-2">
+        <button data-action="reset-auto-reg-filters" class="btn btn-secondary space-x-1.5"><i data-lucide="rotate-ccw" class="w-4 h-4 text-slate-500"></i><span>초기화</span></button>
+        <button class="btn btn-outline-primary space-x-1.5">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            <span>API 호출</span>
+        </button>
+        <button data-action="navigate" data-content="auto-registration-settings-new" class="btn btn-secondary h-[42px] w-[42px] p-2">
+            <i data-lucide="settings" class="w-5 h-5"></i>
+        </button>
+    </div>
+</div>
+<!-- Table for Auto Registration would go here -->

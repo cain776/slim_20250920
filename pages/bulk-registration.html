@@ -1,0 +1,74 @@
+<div class="content-card p-4 mb-6 flex justify-between items-center text-sm">
+   <div class="flex items-center space-x-4">
+       <!-- Excel Format -->
+       <div class="floating-label-group w-64">
+           <select required class="floating-label-select" data-id="excel-format-select">
+               <option value="" disabled selected></option>
+               <optgroup label="중국(China)">
+                   <option value="cn">🇨🇳 중국(China)</option>
+               </optgroup>
+               <optgroup label="일본(Japan)">
+                   <option value="jp_qoo10">🇯🇵 일본(Japan) > Qoo10</option>
+                   <option value="jp_amazon">🇯🇵 일본(Japan) > Amazon</option>
+                   <option value="jp_rakuten">🇯🇵 일본(Japan) > Rakuten</option>
+                   <option value="jp_buyma">🇯🇵 일본(Japan) > Buyma</option>
+                   <option value="jp_yahoo">🇯🇵 일본(Japan) > Yahoo</option>
+                   <option value="jp_exm">🇯🇵 일본(Japan) > EXM</option>
+                   <option value="jp_exm_track">🇯🇵 일본(Japan) > EXM(택배번호)</option>
+               </optgroup>
+                <optgroup label="기타 국가">
+                   <option value="us">🇺🇸 미국(USPS)</option>
+                   <option value="tw">🇹🇼 대만(Taiwan)</option>
+                   <option value="id">🇮🇩 인도네시아(Indonesia)</option>
+                   <option value="my">🇲🇾 말레이시아(Malaysia)</option>
+                   <option value="sg">🇸🇬 싱가포르(Singapore)</option>
+                   <option value="ph">🇵🇭 필리핀(Philippines)</option>
+                   <option value="vn">🇻🇳 베트남(Vietnam)</option>
+                   <option value="th">🇹🇭 태국(Thailand)</option>
+               </optgroup>
+               <optgroup label="배송사">
+                   <option value="ups">UPS</option>
+                   <option value="ems">EMS</option>
+                   <option value="kpacket">K-Packet</option>
+               </optgroup>
+               <optgroup label="플랫폼">
+                   <option value="cafe24">Cafe24</option>
+                   <option value="shopify">Shopify</option>
+               </optgroup>
+           </select>
+           <label class="floating-label">엑셀 양식</label>
+           <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="엑셀 양식 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+       </div>
+       <!-- API ID -->
+       <div class="floating-label-group w-36">
+           <select required class="floating-label-select" data-id="api-id-select" disabled>
+               <option value="" disabled selected></option>
+               <option value="api001">API001</option>
+               <option value="api002">API002</option>
+           </select>
+           <label class="floating-label">API ID</label>
+           <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="API ID 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+       </div>
+       <button class="btn btn-outline-green h-[42px] space-x-1.5">
+           <i data-lucide="download" class="w-4 h-4"></i>
+           <span>샘플파일 다운로드</span>
+       </button>
+       <div class="border-l border-slate-300 h-6"></div>
+       <!-- File Picker -->
+       <div class="custom-file-input">
+           <label for="file-upload" class="file-select-btn cursor-pointer rounded-l-md">
+               <i data-lucide="file-up" class="w-4 h-4 text-slate-500"></i>
+               <span class="font-medium">파일선택</span>
+           </label>
+           <span data-id="file-name" class="file-name truncate" data-action="reset-file-input">선택된 파일 없음</span>
+           <input id="file-upload" type="file" class="hidden"/>
+       </div>
+   </div>
+   <div class="flex items-center space-x-2">
+       <button data-action="reset-bulk-reg-filters" class="btn btn-secondary space-x-1.5"><i data-lucide="rotate-ccw" class="w-4 h-4 text-slate-500"></i><span>초기화</span></button>
+       <button class="btn btn-outline-green space-x-1.5">
+           <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+           <span>엑셀 호출</span>
+       </button>
+   </div>
+</div>

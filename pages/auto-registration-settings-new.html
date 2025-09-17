@@ -1,0 +1,254 @@
+<div class="content-card p-8">
+    <!-- 탭 네비게이션 -->
+    <div class="flex border-b border-slate-200 mb-8">
+        <button class="tab-button active px-6 py-3 text-sm font-medium border-b-2 border-[#36005E] text-[#36005E]" data-tab="collection-settings">
+            수집 설정
+        </button>
+        <button class="tab-button px-6 py-3 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-[#36005E]" data-tab="exception-handling">
+            예외 처리
+        </button>
+    </div>
+
+    <!-- 수집 설정 탭 -->
+    <div id="collection-settings" class="tab-content">
+        <!-- 자동 수집 활성화 섹션 -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-800 mb-2">자동 수집 활성화</h2>
+                    <p class="text-sm text-slate-600">이 기능을 켜면 설정된 스케줄에 따라 자동으로 주문을 수집합니다.</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="auto-collection-toggle" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#36005E]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#36005E]"></div>
+                </label>
+            </div>
+        </div>
+
+        <!-- 수집 스케줄 설정 섹션 -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i data-lucide="calendar" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                    <h3 class="text-lg font-semibold text-slate-800">수집 스케줄 설정</h3>
+                </div>
+                
+                <div class="flex items-center space-x-6">
+                    <!-- 수집 기간 -->
+                    <div class="flex items-center">
+                        <label class="text-sm font-medium text-slate-700 mr-2">수집 기간</label>
+                        <div class="flex items-center border border-slate-300 rounded-lg p-2 w-48">
+                            <i data-lucide="calendar" class="w-4 h-4 mr-2 text-slate-500"></i>
+                            <span class="text-sm text-slate-700">20250909 - 20250916</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 수집 주기 -->
+                    <div class="flex items-center">
+                        <label class="text-sm font-medium text-slate-700 mr-2">수집 주기</label>
+                        <select class="w-32 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#36005E] focus:border-transparent">
+                            <option value="5min" selected>5분마다</option>
+                            <option value="15min">15분마다</option>
+                            <option value="30min">30분마다</option>
+                            <option value="hourly">매시간</option>
+                            <option value="daily">매일</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 요일 선택 -->
+                    <div class="flex items-center">
+                        <label class="text-sm font-medium text-slate-700 mr-2">요일</label>
+                        <div class="flex gap-1">
+                            <button class="day-btn selected px-2 py-1 text-xs border border-[#36005E] bg-[#36005E] text-white rounded">월</button>
+                            <button class="day-btn selected px-2 py-1 text-xs border border-[#36005E] bg-[#36005E] text-white rounded">화</button>
+                            <button class="day-btn selected px-2 py-1 text-xs border border-[#36005E] bg-[#36005E] text-white rounded">수</button>
+                            <button class="day-btn selected px-2 py-1 text-xs border border-[#36005E] bg-[#36005E] text-white rounded">목</button>
+                            <button class="day-btn selected px-2 py-1 text-xs border border-[#36005E] bg-[#36005E] text-white rounded">금</button>
+                            <button class="day-btn px-2 py-1 text-xs border border-slate-300 bg-white text-slate-600 rounded hover:bg-slate-50">토</button>
+                            <button class="day-btn px-2 py-1 text-xs border border-slate-300 bg-white text-slate-600 rounded hover:bg-slate-50">일</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 수집 대상 쇼핑몰 섹션 -->
+        <div class="mb-8">
+            <div class="flex items-center mb-4">
+                <i data-lucide="shopping-cart" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                <h3 class="text-lg font-semibold text-slate-800">수집 대상 쇼핑몰</h3>
+            </div>
+            
+            <div class="flex gap-3">
+                <button class="mall-btn selected px-4 py-2 text-sm border border-[#36005E] bg-[#36005E] text-white rounded-lg">Qoo10</button>
+                <button class="mall-btn selected px-4 py-2 text-sm border border-[#36005E] bg-[#36005E] text-white rounded-lg">Rakuten</button>
+                <button class="mall-btn px-4 py-2 text-sm border border-slate-300 bg-white text-slate-600 rounded-lg hover:bg-slate-50">PlayAuto</button>
+                <button class="mall-btn px-4 py-2 text-sm border border-slate-300 bg-white text-slate-600 rounded-lg hover:bg-slate-50">NHN</button>
+            </div>
+        </div>
+
+        <!-- 수집 후 자동 전송 섹션 -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i data-lucide="user" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                    <h3 class="text-lg font-semibold text-slate-800">수집 후 자동 전송</h3>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <label class="flex items-center p-3 border border-[#36005E] bg-[#36005E]/5 rounded-lg cursor-pointer">
+                        <input type="radio" name="auto-transmission" value="auto" class="mr-2 text-[#36005E] focus:ring-[#36005E]" checked>
+                        <span class="text-sm text-slate-700">수집 완료 후 '배송준비' 상태로 자동 전송합니다.</span>
+                    </label>
+                    <label class="flex items-center p-3 border border-slate-300 bg-white rounded-lg cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="auto-transmission" value="manual" class="mr-2 text-[#36005E] focus:ring-[#36005E]">
+                        <span class="text-sm text-slate-700">수집만 수행합니다. (전송은 수동으로 진행)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 예외 처리 탭 -->
+    <div id="exception-handling" class="tab-content hidden">
+        <!-- 상단 액션 바 -->
+        <div class="flex items-center justify-between mb-6">
+            <div class="text-sm text-slate-600">
+                검색결과: <span class="font-semibold">4건</span>
+            </div>
+            <div class="flex gap-3">
+                <button class="px-4 py-2 border border-red-500 text-red-500 rounded-lg hover:bg-red-50 transition-colors">
+                    선택된 항목을 삭제
+                </button>
+                <button class="px-4 py-2 border border-green-500 text-green-500 rounded-lg hover:bg-green-50 transition-colors">
+                    등록
+                </button>
+            </div>
+        </div>
+
+        <!-- 데이터 테이블 -->
+        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-slate-50">
+                    <tr>
+                        <th class="px-4 py-3 text-left">
+                            <input type="checkbox" class="rounded border-slate-300 text-[#36005E] focus:ring-[#36005E]">
+                        </th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-700">쇼핑몰</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-700">플랫폼</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-700">API ID</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-700">연동상태</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-700">연동일자</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-700">만료일자</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-slate-700">갱신일자</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr class="hover:bg-slate-50">
+                        <td class="px-4 py-3">
+                            <input type="checkbox" class="rounded border-slate-300 text-[#36005E] focus:ring-[#36005E]">
+                        </td>
+                        <td class="px-4 py-3 text-sm text-slate-700">DASH_ALL</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">Qoo10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">DASH_ALL</td>
+                        <td class="px-4 py-3">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                연동중
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-05-26 17:42:10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-05-26 17:42:10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-05-26 17:42:10</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="px-4 py-3">
+                            <input type="checkbox" class="rounded border-slate-300 text-[#36005E] focus:ring-[#36005E]">
+                        </td>
+                        <td class="px-4 py-3 text-sm text-slate-700">DASH_EM</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">Qoo10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">DASH_EM</td>
+                        <td class="px-4 py-3">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                연동중
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-05-26 17:42:10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-05-26 17:42:10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-05-26 17:42:10</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="px-4 py-3">
+                            <input type="checkbox" class="rounded border-slate-300 text-[#36005E] focus:ring-[#36005E]">
+                        </td>
+                        <td class="px-4 py-3 text-sm text-slate-700">EEN_EM</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">Qoo10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">EEN_EM</td>
+                        <td class="px-4 py-3">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                연동중
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-05-26 17:42:10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-05-26 17:42:10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-05-26 17:42:10</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="px-4 py-3">
+                            <input type="checkbox" class="rounded border-slate-300 text-[#36005E] focus:ring-[#36005E]">
+                        </td>
+                        <td class="px-4 py-3 text-sm text-slate-700">manyo</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">Qoo10</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">manyo1004</td>
+                        <td class="px-4 py-3">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                연동중
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-07-23 09:49:40</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-07-23 09:49:40</td>
+                        <td class="px-4 py-3 text-sm text-slate-700">2025-07-23 11:52:24</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 하단 페이지네이션 -->
+        <div class="flex items-center justify-between mt-6">
+            <div></div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-slate-600">Page Size:</span>
+                    <select class="px-2 py-1 border border-slate-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-[#36005E] focus:border-transparent">
+                        <option value="50" selected>50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                    </select>
+                </div>
+                <div class="text-sm text-slate-600">
+                    1 to 4 of 4
+                </div>
+                <div class="flex items-center gap-1">
+                    <button class="p-1 text-slate-400 hover:text-slate-600 disabled:opacity-50" disabled>
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                    </button>
+                    <button class="p-1 text-slate-400 hover:text-slate-600 disabled:opacity-50" disabled>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 하단 버튼들 -->
+    <div class="flex justify-end gap-3 pt-6 border-t border-slate-200">
+        <button class="px-6 py-2 border border-slate-300 bg-white text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+            취소
+        </button>
+        <button class="px-6 py-2 border border-slate-300 bg-white text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+            테스트
+        </button>
+        <button class="px-6 py-2 bg-[#36005E] text-white rounded-lg hover:bg-[#2d0049] transition-colors">
+            저장
+        </button>
+    </div>
+</div>

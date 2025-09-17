@@ -1,0 +1,573 @@
+<div id="auto-registration-settings-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-6xl h-[90vh] transform transition-all">
+        <!-- 모달 헤더 -->
+        <div class="flex items-center justify-between px-6 py-4 border-b bg-[#2A004A] text-white rounded-t-lg">
+            <h3 id="modal-title" class="text-lg font-semibold">자동등록 설정</h3>
+            <button data-action="close-modal" class="p-1 rounded-full hover:bg-[#36005E]" aria-label="팝업 닫기">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        
+        <!-- 탭 네비게이션 -->
+        <div class="flex border-b bg-slate-50">
+            <button data-tab="collection-settings" class="tab-button active px-6 py-3 text-sm font-medium text-white bg-[#36005E] border-b-2 border-[#36005E]">
+                <i data-lucide="bar-chart-3" class="w-4 h-4 mr-2"></i>
+                수집 설정
+            </button>
+            <button data-tab="option-exclude" class="tab-button px-6 py-3 text-sm font-medium text-slate-600 hover:text-[#36005E] hover:bg-slate-100">
+                <i data-lucide="ban" class="w-4 h-4 mr-2"></i>
+                옵션코드 제외
+            </button>
+            <button data-tab="logs" class="tab-button px-6 py-3 text-sm font-medium text-slate-600 hover:text-[#36005E] hover:bg-slate-100">
+                <i data-lucide="file-text" class="w-4 h-4 mr-2"></i>
+                로그
+            </button>
+        </div>
+        
+        <!-- 탭 컨텐츠 -->
+        <div class="flex-1 overflow-y-auto p-6">
+            <!-- 탭 1: 수집 설정 -->
+            <div id="collection-settings-tab" class="tab-content">
+                <!-- 기본 수집 설정 -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                        <i data-lucide="settings" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                        기본 수집 설정
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 수집 기간 설정 -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">
+                                <i data-lucide="calendar" class="w-4 h-4 inline mr-1"></i>
+                                수집 기간 설정
+                            </label>
+                            <div class="flex items-center space-x-2">
+                                <input type="date" class="form-input" value="2024-01-01">
+                                <span class="text-slate-500">~</span>
+                                <input type="date" class="form-input" value="2024-12-31">
+                            </div>
+                        </div>
+                        
+                        <!-- 수집 주기 설정 -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">
+                                <i data-lucide="clock" class="w-4 h-4 inline mr-1"></i>
+                                수집 주기 설정
+                            </label>
+                            <select class="form-select">
+                                <option value="5">5분마다</option>
+                                <option value="10">10분마다</option>
+                                <option value="15">15분마다</option>
+                                <option value="20">20분마다</option>
+                                <option value="25">25분마다</option>
+                                <option value="30">30분마다</option>
+                                <option value="35">35분마다</option>
+                                <option value="40">40분마다</option>
+                                <option value="45">45분마다</option>
+                                <option value="50">50분마다</option>
+                                <option value="55">55분마다</option>
+                                <option value="60">1시간마다</option>
+                                <option value="120">2시간마다</option>
+                                <option value="360">6시간마다</option>
+                                <option value="720">12시간마다</option>
+                                <option value="1440">24시간마다</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- 자동 수집 상태 -->
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-slate-700 mb-2">
+                            <i data-lucide="toggle-left" class="w-4 h-4 inline mr-1"></i>
+                            자동 수집 상태
+                        </label>
+                        <div class="flex items-center space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="auto-collection" value="active" class="mr-2" checked>
+                                <span class="text-sm">자동 수집 활성화</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="auto-collection" value="inactive" class="mr-2">
+                                <span class="text-sm">자동 수집 비활성화</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 매일 설정 -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                        <i data-lucide="calendar-days" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                        매일 설정
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 매일 수집 시간 -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">
+                                <i data-lucide="clock" class="w-4 h-4 inline mr-1"></i>
+                                매일 수집 시간
+                            </label>
+                            <select class="form-select">
+                                <option value="00:00">00:00</option>
+                                <option value="01:00">01:00</option>
+                                <option value="02:00">02:00</option>
+                                <option value="03:00">03:00</option>
+                                <option value="04:00">04:00</option>
+                                <option value="05:00">05:00</option>
+                                <option value="06:00">06:00</option>
+                                <option value="07:00">07:00</option>
+                                <option value="08:00">08:00</option>
+                                <option value="09:00" selected>09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                                <option value="19:00">19:00</option>
+                                <option value="20:00">20:00</option>
+                                <option value="21:00">21:00</option>
+                                <option value="22:00">22:00</option>
+                                <option value="23:00">23:00</option>
+                            </select>
+                        </div>
+                        
+                        <!-- 매일 수집 요일 -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">
+                                <i data-lucide="calendar" class="w-4 h-4 inline mr-1"></i>
+                                매일 수집 요일
+                            </label>
+                            <div class="grid grid-cols-4 gap-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">월</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">화</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">수</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">목</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">금</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2">
+                                    <span class="text-sm">토</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2">
+                                    <span class="text-sm">일</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 매일 수집 활성화 -->
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-slate-700 mb-2">
+                            <i data-lucide="toggle-left" class="w-4 h-4 inline mr-1"></i>
+                            매일 수집 활성화
+                        </label>
+                        <div class="flex items-center space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="daily-collection" value="active" class="mr-2" checked>
+                                <span class="text-sm">매일 수집 활성화</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="daily-collection" value="inactive" class="mr-2">
+                                <span class="text-sm">매일 수집 비활성화</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 수집 옵션 -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                        <i data-lucide="target" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                        수집 옵션
+                    </h4>
+                    
+                    <div class="space-y-4">
+                        <!-- 수집 대상 설정 -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">
+                                <i data-lucide="shopping-cart" class="w-4 h-4 inline mr-1"></i>
+                                수집 대상 설정
+                            </label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">Qoo10 (일본)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">Rakuten</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">Amazon</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2">
+                                    <span class="text-sm">기타 플랫폼</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- 자동 전송 설정 -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">
+                                <i data-lucide="send" class="w-4 h-4 inline mr-1"></i>
+                                자동 전송 설정
+                            </label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="auto-send" value="active" class="mr-2" checked>
+                                    <span class="text-sm">수집 완료 후 자동으로 배송준비 상태로 전송</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="auto-send" value="inactive" class="mr-2">
+                                    <span class="text-sm">수집만 수행 (수동 전송)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 버튼 -->
+                <div class="flex justify-end space-x-3">
+                    <button class="btn btn-secondary">
+                        <i data-lucide="x" class="w-4 h-4 mr-2"></i>
+                        취소
+                    </button>
+                    <button class="btn btn-outline-primary">
+                        <i data-lucide="play" class="w-4 h-4 mr-2"></i>
+                        테스트
+                    </button>
+                    <button class="btn btn-primary">
+                        <i data-lucide="save" class="w-4 h-4 mr-2"></i>
+                        저장
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 탭 2: 옵션코드 제외 -->
+            <div id="option-exclude-tab" class="tab-content hidden">
+                <!-- 예외 옵션코드 추가 -->
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                        <i data-lucide="plus-circle" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                        예외 옵션코드 추가
+                    </h4>
+                    
+                    <div class="flex space-x-3">
+                        <input type="text" placeholder="옵션코드를 입력하세요..." class="form-input flex-1">
+                        <button class="btn btn-primary">
+                            <i data-lucide="plus" class="w-4 h-4 mr-2"></i>
+                            추가
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 검색 및 필터 -->
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                        <i data-lucide="search" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                        검색 및 필터
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">검색</label>
+                            <input type="text" placeholder="검색어를 입력하세요..." class="form-input">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">등록일 필터</label>
+                            <select class="form-select">
+                                <option value="all">전체 기간</option>
+                                <option value="today">오늘</option>
+                                <option value="week">최근 7일</option>
+                                <option value="month">최근 30일</option>
+                                <option value="quarter">최근 3개월</option>
+                                <option value="custom">사용자 지정</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">등록자 필터</label>
+                            <select class="form-select">
+                                <option value="all">전체 등록자</option>
+                                <option value="admin">admin</option>
+                                <option value="user01">user01</option>
+                                <option value="user02">user02</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 예외 목록 -->
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-lg font-semibold text-slate-800 flex items-center">
+                            <i data-lucide="list" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                            등록된 예외 목록 (총 15건)
+                        </h4>
+                        <div class="flex space-x-2">
+                            <button class="btn btn-outline-secondary btn-sm">
+                                <i data-lucide="check-square" class="w-4 h-4 mr-1"></i>
+                                전체선택
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm">
+                                <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
+                                선택삭제
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                엑셀다운로드
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-slate-200 rounded-lg">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                                        <input type="checkbox" class="rounded">
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">옵션코드</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">등록일</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">등록자</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">삭제</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-4 py-3"><input type="checkbox" class="rounded"></td>
+                                    <td class="px-4 py-3 text-sm text-slate-900">OPT001</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">2024-01-15</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">admin</td>
+                                    <td class="px-4 py-3">
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-4 py-3"><input type="checkbox" class="rounded"></td>
+                                    <td class="px-4 py-3 text-sm text-slate-900">OPT002</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">2024-01-16</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">admin</td>
+                                    <td class="px-4 py-3">
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-4 py-3"><input type="checkbox" class="rounded"></td>
+                                    <td class="px-4 py-3 text-sm text-slate-900">OPT003</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">2024-01-17</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">user01</td>
+                                    <td class="px-4 py-3">
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- 페이지네이션 -->
+                    <div class="flex items-center justify-between mt-4">
+                        <div class="text-sm text-slate-500">
+                            총 15건 중 1-10건 표시
+                        </div>
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50">◀</button>
+                            <button class="px-3 py-1 text-sm bg-[#36005E] text-white rounded">1</button>
+                            <button class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50">2</button>
+                            <button class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50">▶</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 탭 3: 로그 -->
+            <div id="logs-tab" class="tab-content hidden">
+                <!-- 로그 필터 -->
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                        <i data-lucide="filter" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                        로그 필터
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">날짜 범위</label>
+                            <div class="flex items-center space-x-2">
+                                <input type="date" class="form-input" value="2024-01-01">
+                                <span class="text-slate-500">~</span>
+                                <input type="date" class="form-input" value="2024-01-20">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">상태 필터</label>
+                            <select class="form-select">
+                                <option value="all">전체 상태</option>
+                                <option value="success">성공</option>
+                                <option value="fail">실패</option>
+                                <option value="exception">예외처리</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">검색</label>
+                            <input type="text" placeholder="주문번호 또는 메시지 검색..." class="form-input">
+                        </div>
+                        <div class="flex items-end space-x-2">
+                            <button class="btn btn-primary">
+                                <i data-lucide="search" class="w-4 h-4 mr-2"></i>
+                                검색
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>
+                                초기화
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 수집 통계 -->
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                        <i data-lucide="bar-chart-3" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                        선택 기간 수집 통계
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-lg">
+                            <div class="text-2xl font-bold text-slate-800">150</div>
+                            <div class="text-sm text-slate-500">총 수집 시도</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="text-2xl font-bold text-green-600">120</div>
+                            <div class="text-sm text-slate-500">수집 성공 (80%)</div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <div class="text-2xl font-bold text-red-600">20</div>
+                            <div class="text-sm text-slate-500">수집 실패 (13.3%)</div>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <div class="text-2xl font-bold text-orange-600">10</div>
+                            <div class="text-sm text-slate-500">예외처리 (6.7%)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 상세 로그 -->
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-lg font-semibold text-slate-800 flex items-center">
+                            <i data-lucide="file-text" class="w-5 h-5 mr-2 text-[#36005E]"></i>
+                            수집 상세 로그 (총 150건)
+                        </h4>
+                        <div class="flex space-x-2">
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                엑셀다운로드
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm">
+                                <i data-lucide="refresh-cw" class="w-4 h-4 mr-1"></i>
+                                새로고침
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-slate-200 rounded-lg">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">수집일시</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">상태</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">주문번호</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">메시지</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-4 py-3 text-sm text-slate-500">2024-01-20<br>14:30:25</td>
+                                    <td class="px-4 py-3">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            성공
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-slate-900">ORD001</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">수집완료</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-4 py-3 text-sm text-slate-500">2024-01-20<br>14:30:26</td>
+                                    <td class="px-4 py-3">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            성공
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-slate-900">ORD002</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">수집완료</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-4 py-3 text-sm text-slate-500">2024-01-20<br>14:30:27</td>
+                                    <td class="px-4 py-3">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                            실패
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-slate-900">ORD003</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">API오류</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-4 py-3 text-sm text-slate-500">2024-01-20<br>14:30:28</td>
+                                    <td class="px-4 py-3">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                            예외
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm text-slate-900">ORD004</td>
+                                    <td class="px-4 py-3 text-sm text-slate-500">옵션제외</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- 페이지네이션 -->
+                    <div class="flex items-center justify-between mt-4">
+                        <div class="text-sm text-slate-500">
+                            총 150건 중 1-10건 표시
+                        </div>
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50">◀</button>
+                            <button class="px-3 py-1 text-sm bg-[#36005E] text-white rounded">1</button>
+                            <button class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50">2</button>
+                            <button class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50">3</button>
+                            <button class="px-3 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50">▶</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
