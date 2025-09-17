@@ -111,10 +111,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // 문의관리 페이지 초기화
         console.log('문의관리 페이지 초기화');
         
-        // 날짜 피커 초기화
-        const datePicker = contentRoot.querySelector('.date-picker');
-        if (datePicker && window.flatpickr) {
-            flatpickr(datePicker, {
+        // 날짜 피커 초기화 (자동등록과 동일)
+        const dateRangePicker = contentRoot.querySelector('[data-id="date-range-picker"]');
+        if (dateRangePicker && window.flatpickr) {
+            flatpickr(dateRangePicker, {
+                mode: "range",
                 dateFormat: "Y-m-d",
                 locale: "ko",
                 placeholder: "날짜를 선택하세요"
@@ -1067,15 +1068,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         checkbox.checked = false;
                     });
                     break;
-                case 'clear-date':
-                    // 날짜 피커 초기화
-                    const dateInput = actionButton.closest('.floating-label-group').querySelector('.date-picker');
-                    if (dateInput) {
-                        dateInput.value = '';
-                        const floatingLabelGroup = dateInput.closest('.floating-label-group');
-                        if (floatingLabelGroup) {
-                            floatingLabelGroup.classList.remove('has-value');
-                        }
+                case 'clear-datepicker':
+                    // 날짜 피커 초기화 (자동등록과 동일)
+                    const dateRangeInput = actionButton.closest('.date-range-picker-group').querySelector('[data-id="date-range-picker"]');
+                    if (dateRangeInput) {
+                        dateRangeInput.value = '';
                     }
                     break;
             }
