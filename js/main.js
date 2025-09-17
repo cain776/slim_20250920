@@ -110,6 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function initializeInquiryManagementPage(contentRoot) {
         // 문의관리 페이지 초기화
         console.log('문의관리 페이지 초기화');
+        
+        // 날짜 피커 초기화
+        const datePicker = contentRoot.querySelector('.date-picker');
+        if (datePicker && window.flatpickr) {
+            flatpickr(datePicker, {
+                dateFormat: "Y-m-d",
+                locale: "ko",
+                placeholder: "날짜를 선택하세요"
+            });
+        }
     }
     
     function initializeApiIntegrationPage(contentRoot) {
@@ -1056,6 +1066,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     inquiryCheckboxes.forEach(checkbox => {
                         checkbox.checked = false;
                     });
+                    break;
+                case 'clear-date':
+                    // 날짜 피커 초기화
+                    const dateInput = actionButton.closest('.floating-label-group').querySelector('.date-picker');
+                    if (dateInput) {
+                        dateInput.value = '';
+                        const floatingLabelGroup = dateInput.closest('.floating-label-group');
+                        if (floatingLabelGroup) {
+                            floatingLabelGroup.classList.remove('has-value');
+                        }
+                    }
                     break;
             }
         }

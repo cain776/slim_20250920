@@ -25,13 +25,20 @@
             <label class="floating-label">문의유형</label>
             <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="문의유형 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
         </div>
+        <div class="w-px h-8 bg-slate-200"></div>
+        <div class="floating-label-group w-36">
+            <input type="text" class="floating-label-input date-picker" placeholder="날짜를 선택하세요" readonly>
+            <label class="floating-label">일자 선택</label>
+            <button type="button" class="clear-select-btn" data-action="clear-date" aria-label="날짜 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+        </div>
         <div class="floating-label-group w-36">
             <select required class="floating-label-select">
                 <option value="" disabled selected></option>
-                <option value="all">전체</option>
-                <option value="high">긴급</option>
-                <option value="normal">일반</option>
-                <option value="low">낮음</option>
+                <option value="select">== 선택 ==</option>
+                <option value="inquiry-date">문의작성일</option>
+                <option value="order-date">주문일</option>
+                <option value="shipment-date">출하일</option>
+                <option value="arrival-date">현지도착일</option>
             </select>
             <label class="floating-label">우선순위</label>
             <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="우선순위 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
