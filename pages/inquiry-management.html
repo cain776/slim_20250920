@@ -1,0 +1,44 @@
+<div class="content-card p-4 mb-6 flex justify-between items-center text-sm">
+    <div class="flex items-center space-x-4">
+        <div class="floating-label-group w-36">
+            <select required class="floating-label-select">
+                <option value="" disabled selected></option>
+                <option value="all">전체</option>
+                <option value="pending">대기중</option>
+                <option value="processing">처리중</option>
+                <option value="completed">완료</option>
+            </select>
+            <label class="floating-label">처리상태</label>
+            <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="처리상태 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+        </div>
+        <div class="floating-label-group w-36">
+            <select required class="floating-label-select">
+                <option value="" disabled selected></option>
+                <option value="all">전체</option>
+                <option value="system">시스템 문의</option>
+                <option value="order">주문 문의</option>
+                <option value="payment">결제 문의</option>
+                <option value="shipping">배송 문의</option>
+            </select>
+            <label class="floating-label">문의유형</label>
+            <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="문의유형 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+        </div>
+        <div class="floating-label-group w-36">
+            <select required class="floating-label-select">
+                <option value="" disabled selected></option>
+                <option value="all">전체</option>
+                <option value="high">긴급</option>
+                <option value="normal">일반</option>
+                <option value="low">낮음</option>
+            </select>
+            <label class="floating-label">우선순위</label>
+            <button type="button" class="clear-select-btn" data-action="clear-select" aria-label="우선순위 선택 초기화"><i data-lucide="x" class="w-4 h-4 pointer-events-none"></i></button>
+        </div>
+    </div>
+    <div class="flex items-center space-x-2"><button data-action="reset-inquiry-filters" class="btn btn-secondary space-x-1.5"><i data-lucide="rotate-ccw" class="w-4 h-4 text-slate-500"></i><span>초기화</span></button><button class="btn btn-outline-primary space-x-1.5"><i data-lucide="search" class="w-4 h-4"></i><span>검색</span></button></div>
+</div>
+<div class="content-card p-6">
+    <div class="flex justify-between items-center mb-4"><h3 class="text-sm font-semibold">검색결과: <span class="text-[#36005E] font-bold">12</span>건</h3><div class="flex items-center space-x-2 text-sm"><div class="flex items-center"><span class="text-sm text-red-500 mr-2">선택된 항목을</span><button class="btn btn-outline-red text-sm">삭제</button></div><button class="btn btn-outline-green text-sm">답변</button></div></div>
+    <div class="overflow-x-auto border-t"><table class="w-full text-sm text-center text-slate-600"><thead class="text-sm text-slate-700 bg-slate-50"><tr><th scope="col" class="p-4 w-12"><input type="checkbox" class="rounded border-slate-300"></th><th scope="col" class="px-3 py-3 font-medium">문의번호</th><th scope="col" class="px-3 py-3 font-medium">문의유형</th><th scope="col" class="px-3 py-3 font-medium">제목</th><th scope="col" class="px-3 py-3 font-medium">작성자</th><th scope="col" class="px-3 py-3 font-medium">처리상태</th><th scope="col" class="px-3 py-3 font-medium">우선순위</th><th scope="col" class="px-3 py-3 font-medium">등록일</th></tr></thead><tbody class="divide-y divide-slate-200"><tr class="hover:bg-slate-50"><td class="p-4"><input type="checkbox" class="rounded border-slate-300"></td><td class="px-3 py-4">INQ-2024-001</td><td class="px-3 py-4">시스템 문의</td><td class="px-3 py-4">로그인 오류 문의</td><td class="px-3 py-4">김철수</td><td class="px-3 py-4"><span class="bg-yellow-100 text-yellow-800 text-sm font-semibold px-2.5 py-1 rounded-full">처리중</span></td><td class="px-3 py-4"><span class="bg-red-100 text-red-800 text-sm font-semibold px-2.5 py-1 rounded-full">긴급</span></td><td class="px-3 py-4">2024-09-17</td></tr><tr class="hover:bg-slate-50"><td class="p-4"><input type="checkbox" class="rounded border-slate-300"></td><td class="px-3 py-4">INQ-2024-002</td><td class="px-3 py-4">주문 문의</td><td class="px-3 py-4">주문 취소 방법 문의</td><td class="px-3 py-4">이영희</td><td class="px-3 py-4"><span class="bg-green-100 text-green-800 text-sm font-semibold px-2.5 py-1 rounded-full">완료</span></td><td class="px-3 py-4"><span class="bg-blue-100 text-blue-800 text-sm font-semibold px-2.5 py-1 rounded-full">일반</span></td><td class="px-3 py-4">2024-09-16</td></tr><tr class="hover:bg-slate-50"><td class="p-4"><input type="checkbox" class="rounded border-slate-300"></td><td class="px-3 py-4">INQ-2024-003</td><td class="px-3 py-4">배송 문의</td><td class="px-3 py-4">배송 지연 문의</td><td class="px-3 py-4">박민수</td><td class="px-3 py-4"><span class="bg-gray-100 text-gray-800 text-sm font-semibold px-2.5 py-1 rounded-full">대기중</span></td><td class="px-3 py-4"><span class="bg-blue-100 text-blue-800 text-sm font-semibold px-2.5 py-1 rounded-full">일반</span></td><td class="px-3 py-4">2024-09-15</td></tr><tr class="hover:bg-slate-50"><td class="p-4"><input type="checkbox" class="rounded border-slate-300"></td><td class="px-3 py-4">INQ-2024-004</td><td class="px-3 py-4">결제 문의</td><td class="px-3 py-4">결제 오류 문의</td><td class="px-3 py-4">최지영</td><td class="px-3 py-4"><span class="bg-yellow-100 text-yellow-800 text-sm font-semibold px-2.5 py-1 rounded-full">처리중</span></td><td class="px-3 py-4"><span class="bg-red-100 text-red-800 text-sm font-semibold px-2.5 py-1 rounded-full">긴급</span></td><td class="px-3 py-4">2024-09-14</td></tr></tbody></table></div>
+    <div class="flex items-center justify-end pt-4 text-sm text-slate-500 border-t mt-4"><div class="flex items-center space-x-4"><div class="flex items-center space-x-2"><span>Page Size:</span><select class="border border-slate-300 rounded-md p-1"><option>50</option><option>100</option></select></div><span>1 to 4 of 4</span><div class="flex items-center space-x-1"><button class="p-2 rounded-md hover:bg-slate-100 disabled:opacity-50" disabled><i data-lucide="chevron-left" class="w-4 h-4"></i></button><button class="p-2 rounded-md hover:bg-slate-100 disabled:opacity-50" disabled><i data-lucide="chevron-right" class="w-4 h-4"></i></button></div></div></div>
+</div>

@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const CONSTANTS = {
         PAGE_IDS: {
             ORDER_INFO_INQUIRY: 'order-info-inquiry',
+            ORDER_HOLD_MANAGEMENT: 'order-hold-management',
+            NOTICE_BOARD: 'notice-board',
+            INQUIRY_MANAGEMENT: 'inquiry-management',
             API_INTEGRATION: 'api-integration',
             AUTO_REGISTRATION: 'auto-registration',
             BULK_REGISTRATION: 'bulk-registration',
@@ -83,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 페이지 초기화 함수들 (기존 구조 유지) ---
     const pageInitializers = {
         [CONSTANTS.PAGE_IDS.API_INTEGRATION]: initializeApiIntegrationPage,
+        [CONSTANTS.PAGE_IDS.NOTICE_BOARD]: initializeNoticeBoardPage,
+        [CONSTANTS.PAGE_IDS.INQUIRY_MANAGEMENT]: initializeInquiryManagementPage,
         [CONSTANTS.PAGE_IDS.AUTO_REGISTRATION]: initializeAutoRegistrationPage,
         [CONSTANTS.PAGE_IDS.AUTO_REGISTRATION_SETTINGS_NEW]: initializeAutoRegistrationSettingsNewPage,
         [CONSTANTS.PAGE_IDS.BULK_REGISTRATION]: initializeBulkRegistrationPage
@@ -95,6 +100,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- 기존 함수들 (성능 개선 적용) ---
+    
+    function initializeNoticeBoardPage(contentRoot) {
+        // 공지사항 페이지 초기화
+        console.log('공지사항 페이지 초기화');
+    }
+    
+    function initializeInquiryManagementPage(contentRoot) {
+        // 문의관리 페이지 초기화
+        console.log('문의관리 페이지 초기화');
+    }
     
     function initializeApiIntegrationPage(contentRoot) {
         // console.log('API 연동관리 페이지 초기화');
@@ -646,15 +661,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTopBarTitle(pageId) {
         const titleMap = {
             'order-info-inquiry': '주문정보관리',
+            'order-hold-management': '삭제/보류/보관 관리',
+            'notice-board': '공지사항',
+            'inquiry-management': '문의관리',
             'api-integration': 'API 연동관리',
             'auto-registration': '자동등록(API)',
             'bulk-registration': '대량등록(엑셀)',
             'auto-registration-settings-new': '자동등록 설정'
         };
         
-        const titleElement = app.elements.topBarTitle;
+        // 직접 DOM에서 찾기 (캐시 문제 해결)
+        const titleElement = document.querySelector('#top-bar-title');
         if (titleElement) {
             titleElement.textContent = titleMap[pageId] || '';
+            console.log('Title updated:', pageId, '->', titleMap[pageId]);
+        } else {
+            console.error('Title element not found');
         }
     }
 
@@ -1010,6 +1032,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 현재 페이지의 모든 체크박스 해제
                     const checkboxes = document.querySelectorAll('.content-area input[type="checkbox"]');
                     checkboxes.forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+                    break;
+                case 'reset-inquiry-filters':
+                    // 문의관리 페이지의 모든 셀렉트박스 초기화
+                    const inquirySelects = document.querySelectorAll('.content-area .floating-label-select');
+                    inquirySelects.forEach(select => {
+                        select.value = '';
+                        const floatingLabelGroup = select.closest('.floating-label-group');
+                        if (floatingLabelGroup) {
+                            floatingLabelGroup.classList.remove('has-value');
+                        }
+                    });
+                    
+                    // 문의관리 페이지의 모든 체크박스 해제
+                    const inquiryCheckboxes = document.querySelectorAll('.content-area input[type="checkbox"]');
+                    inquiryCheckboxes.forEach(checkbox => {
                         checkbox.checked = false;
                     });
                     break;

@@ -41,12 +41,23 @@
                         </a>
                         <ul class="pl-14 pr-4 py-2 bg-slate-50/50" data-state="collapsed">
                             <li><a href="#" data-action="navigate" data-content="order-info-inquiry" class="block py-2 text-sm text-slate-500 hover:text-[#36005E]">주문정보관리</a></li>
+                            <li><a href="#" data-action="navigate" data-content="order-hold-management" class="block py-2 text-sm text-slate-500 hover:text-[#36005E]">삭제/보류/보관 관리</a></li>
                         </ul>
                     </li>
                     <li><a href="#" data-action="navigate" class="flex items-center px-6 py-3 text-slate-600 hover:bg-slate-100 whitespace-nowrap"><i data-lucide="truck" class="w-5 h-5 mr-3"></i><span class="sidebar-item-text">발송내역</span></a></li>
                     <li><a href="#" data-action="navigate" class="flex items-center px-6 py-3 text-slate-600 hover:bg-slate-100 whitespace-nowrap"><i data-lucide="package" class="w-5 h-5 mr-3"></i><span class="sidebar-item-text">상품관리</span></a></li>
                     <li><a href="#" data-action="navigate" class="flex items-center px-6 py-3 text-slate-600 hover:bg-slate-100 whitespace-nowrap"><i data-lucide="warehouse" class="w-5 h-5 mr-3"></i><span class="sidebar-item-text">창고관리</span></a></li>
                     <li><a href="#" data-action="navigate" class="flex items-center px-6 py-3 text-slate-600 hover:bg-slate-100 whitespace-nowrap"><i data-lucide="send-to-back" class="w-5 h-5 mr-3"></i><span class="sidebar-item-text">재배송/회수</span></a></li>
+                    <li data-menu-id="notice-inquiry-menu">
+                        <a href="#" data-action="toggle-submenu" aria-expanded="false" class="flex items-center justify-between px-6 py-3 text-slate-600 hover:bg-slate-100 whitespace-nowrap">
+                            <div class="flex items-center"><i data-lucide="megaphone" class="w-5 h-5 mr-3"></i><span class="sidebar-item-text">공지/문의 관리</span></div>
+                            <i data-lucide="chevron-down" class="submenu-toggle-icon w-4 h-4 transition-transform"></i>
+                        </a>
+                        <ul class="pl-14 pr-4 py-2 bg-slate-50/50" data-state="collapsed">
+                            <li><a href="#" data-action="navigate" data-content="notice-board" class="block py-2 text-sm text-slate-500 hover:text-[#36005E]">공지사항</a></li>
+                            <li><a href="#" data-action="navigate" data-content="inquiry-management" class="block py-2 text-sm text-slate-500 hover:text-[#36005E]">문의관리</a></li>
+                        </ul>
+                    </li>
                     <li data-menu-id="mypage-menu">
                         <a href="#" data-action="toggle-submenu" aria-expanded="false" class="flex items-center justify-between px-6 py-3 text-slate-600 hover:bg-slate-100 whitespace-nowrap">
                             <div class="flex items-center"><i data-lucide="user" class="w-5 h-5 mr-3"></i><span class="sidebar-item-text">My Page</span></div>

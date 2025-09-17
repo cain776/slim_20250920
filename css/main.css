@@ -93,7 +93,18 @@ body {
      padding-left: 0;
      padding-right: 0;
 }
-.sidebar-collapsed .sidebar [data-action] i[data-lucide] { margin-right: 0; }
+.sidebar-collapsed .sidebar [data-action] i[data-lucide] { 
+    margin-right: 0;
+}
+
+/* Lucide 아이콘 애니메이션 방지 */
+.sidebar i[data-lucide],
+.sidebar svg {
+    transition: none !important;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: auto !important;
+}
 .sidebar-collapsed .sidebar ul[data-state="expanded"] { display: none !important; }
 
 [data-action="navigate"].active,
